@@ -46,3 +46,9 @@ set expandtab               " Convert tabs to spaces for clean GitHub views
 let g:netrw_banner = 0       " Hide the massive top help banner
 let g:netrw_liststyle = 3    " Clean tree structure directory view
 let g:netrw_browse_split = 4 " Open chosen files in a new vertical split
+
+
+inoremap <M-h> <Left>
+inoremap <M-j> <Down>
+inoremap <M-k> <Up>
+inoremap <M-l> <Right>
