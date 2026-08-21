@@ -52,3 +52,9 @@ inoremap <M-h> <Left>
 inoremap <M-j> <Down>
 inoremap <M-k> <Up>
 inoremap <M-l> <Right>
+inoremap <M-w> <C-o>w
+inoremap <M-b> <C-o>b
+inoremap <M-e> <C-o>e
+inoremap <M-d> <C-o>dd
+inoremap <M-x> <C-o>x
+inoremap <M-c> <C-o>cc
