@@ -51,3 +51,9 @@ let g:netrw_liststyle = 3    " Clean tree structure directory view
 let g:netrw_browse_split = 4 " Open chosen files in a new vertical split
 let g:netrw_winsize = 25     " Fix explorer window width to 25%
 nnoremap <Leader><Space> /
+
+
+" THEMES AND OTHER AESTHETIC SHIT
+
+set background=dark
+colorscheme desert " i dont fucking know, its random
