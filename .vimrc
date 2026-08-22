@@ -17,17 +17,21 @@ set expandtab               " Convert tabs to spaces
 let mapleader = " " 
 
 " Fast Escape and Command mode
-inoremap jj <Esc> " click jj fast to go  to normal mode
-nnoremap ; : "  click ; for : so no space because i dont wanna waste 3 fucking nanoseconds of my time
+inoremap jj <Esc>
+" click jj fast to go  to normal mode
+nnoremap ; :
+"  click ; for : so no space because i dont wanna waste 3 fucking nanoseconds of my time
 
 " Instant C compilation and run with F5
-nnoremap <F5> :w <bar> !gcc % -o %:r && ./%:r<CR> " just click f5 to compile your c file  --   it prolly wont compile, you're shit at coding
+nnoremap <F5> :w<CR>:!gcc "%" -o "%:p:r" && "%:p:r"<CR>
+" just click f5 to compile your c file  --   it prolly wont compile, you're shit at coding
 
 " Clear search highlights with Ctrl+L
 nnoremap <C-l> :nohlsearch<CR> "  the highlights just stay there for fucking forever
 
 " Open Left Explorer (Tree view toggling)
-nnoremap <Leader>f :Lex 30<CR> " this one is goddam useful, 
+nnoremap <Leader>f :Lex 30<CR>
+" this one is goddam useful, 
 
 " --- INSERT MODE NAVIGATION & EDITING (Alt/Meta Keys) ---
 inoremap <M-h> <Left>
