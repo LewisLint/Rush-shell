@@ -8,26 +8,26 @@ set hlsearch                " Highlight all search matches
 set incsearch               " Highlight matches dynamically as you type
 
 " --- CODE FORMATTING ---
-set autoindent              " Maintain indentation from previous line
-set tabstop=4               " Visual length of a tab character
+set autoindent              " Maintain indentation from previous bullshit
+set tabstop=4               " Length of a tab
 set shiftwidth=4            " Spaces used for auto-indent steps
 set expandtab               " Convert tabs to spaces
 
 " --- CUSTOM SHORTCUT MAPPINGS ---
-let mapleader = " "
+let mapleader = " " 
 
 " Fast Escape and Command mode
-inoremap jj <Esc>
-nnoremap ; :
+inoremap jj <Esc> " click jj fast to go  to normal mode
+nnoremap ; : "  click ; for : so no space because i dont wanna waste 3 fucking nanoseconds of my time
 
 " Instant C compilation and run with F5
-nnoremap <F5> :w <bar> !gcc % -o %< && ./%<<CR>
+nnoremap <F5> :w <bar> !gcc % -o %:r && ./%:r<CR> " just click f5 to compile your c file  --   it prolly wont compile, you're shit at coding
 
 " Clear search highlights with Ctrl+L
-nnoremap <C-l> :nohlsearch<CR>
+nnoremap <C-l> :nohlsearch<CR> "  the highlights just stay there for fucking forever
 
 " Open Left Explorer (Tree view toggling)
-nnoremap <Leader>f :Lex 30<CR>
+nnoremap <Leader>f :Lex 30<CR> " this one is goddam useful, 
 
 " --- INSERT MODE NAVIGATION & EDITING (Alt/Meta Keys) ---
 inoremap <M-h> <Left>
@@ -55,5 +55,6 @@ nnoremap <Leader><Space> /
 
 " THEMES AND OTHER AESTHETIC SHIT
 
-set background=dark
-colorscheme desert " i dont fucking know, its random
+set background=dark " sets the background to dark, if you cant fucking read
+colorscheme slate " idk  man this is supposed to be easy on the eyes for all you chronic terminal adicts.
+set wildmenu "  figure it the fuck out
