@@ -27,7 +27,8 @@ nnoremap <F5> :w<CR>:!gcc "%" -o "%:p:r" && "%:p:r"<CR>
 " just click f5 to compile your c file  --   it prolly wont compile, you're shit at coding
 
 " Clear search highlights with Ctrl+L
-nnoremap <C-l> :nohlsearch<CR> "  the highlights just stay there for fucking forever
+nnoremap <C-l> :nohlsearch<CR>
+"  the highlights just stay there for fucking forever
 
 " Open Left Explorer (Tree view toggling)
 nnoremap <Leader>f :Lex 30<CR>
