@@ -3,12 +3,16 @@ set number                  " Show line numbers
 set mouse=a                 " Enable mouse support for scrolling/clicking
 set clipboard=unnamedplus   " Link Vim directly to system copy/paste
 
+" Reduce wait time for Alt/Meta key sequences to register
+set ttimeoutlen=50          
+
 " --- SEARCH TWEAKS ---
 set hlsearch                " Highlight all search matches
 set incsearch               " Highlight matches dynamically as you type
 
 " --- CODE FORMATTING ---
-set autoindent              " Maintain indentation from previous bullshit
+" Maintain indentation from previous line
+set autoindent              
 set tabstop=4               " Length of a tab
 set shiftwidth=4            " Spaces used for auto-indent steps
 set expandtab               " Convert tabs to spaces
@@ -16,23 +20,20 @@ set expandtab               " Convert tabs to spaces
 " --- CUSTOM SHORTCUT MAPPINGS ---
 let mapleader = " " 
 
-" Fast Escape and Command mode
+" Use jj to return to normal mode
 inoremap jj <Esc>
-" click jj fast to go  to normal mode
-nnoremap ; :
-"  click ; for : so no space because i dont wanna waste 3 fucking nanoseconds of my time
 
-" Instant C compilation and run with F5
+" Use ; to enter command mode quickly
+nnoremap ; :
+
+" Compile and run C file with F5
 nnoremap <F5> :w<CR>:!gcc "%" -o "%:p:r" && "%:p:r"<CR>
-" just click f5 to compile your c file  --   it prolly wont compile, you're shit at coding
 
 " Clear search highlights with Ctrl+L
 nnoremap <C-l> :nohlsearch<CR>
-"  the highlights just stay there for fucking forever
 
-" Open Left Explorer (Tree view toggling)
-nnoremap <Leader>f :Lex 30<CR>
-" this one is goddam useful, 
+" Open/Toggle file explorer
+nnoremap <Leader>f :Lex<CR>
 
 " --- INSERT MODE NAVIGATION & EDITING (Alt/Meta Keys) ---
 inoremap <M-h> <Left>
@@ -51,15 +52,19 @@ inoremap <M-x> <Delete>
 inoremap <M-c> <C-o>diw
 
 " --- NATIVE FILE EXPLORER (NETRW) ---
-let g:netrw_banner = 0       " Hide the massive top help banner
+let g:netrw_banner = 0       " Hide the top help banner
 let g:netrw_liststyle = 3    " Clean tree structure directory view
 let g:netrw_browse_split = 4 " Open chosen files in a new vertical split
 let g:netrw_winsize = 25     " Fix explorer window width to 25%
 nnoremap <Leader><Space> /
 
+" --- THEMES AND AESTHETICS ---
 
-" THEMES AND OTHER AESTHETIC SHIT
+" Use a dark background
+set background=dark
 
-set background=dark " sets the background to dark, if you cant fucking read
-colorscheme slate " idk  man this is supposed to be easy on the eyes for all you chronic terminal adicts.
-set wildmenu "  figure it the fuck out
+" Set colorscheme
+colorscheme slate
+
+" Enhanced command line completion
+set wildmenu
