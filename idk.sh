@@ -1,5 +1,5 @@
 #!/bin/zsh
-cpl = 1
+cpl=1
 while true; do
     sudo ip link set dev wlan0 down && \
     sudo macchanger -r wlan0 && \
