@@ -14,9 +14,9 @@ for ((i=1; i<=$1; i++)); do
     sudo dhclient -H "$HOSTNAME" wlan0
 
     if [ $? -eq 0 ]; then
-        echo "--> loop $1: Successfully claimed a new IP lease <---"
+        echo "--> loop $cpl: Successfully claimed a new IP lease <---"
     else
-        echo "--> loop $1: DHCP request failed <---"
+        echo "--> loop $cpl: DHCP request failed <---"
     fi
     #sleep 60
     # sleep is for the weak (people and wlan cards alike)
