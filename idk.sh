@@ -1,16 +1,18 @@
 #!/bin/zsh
-
+cpl = 1
 while true; do
     sudo ip link set dev wlan0 down && \
     sudo macchanger -r wlan0 && \
-    sudo ip link set dev wlan0 up
+    sudo ip link set dev wlan0 up 
 
     HOSTNAME=$(LC_ALL=C tr -dc 'a-z0-9' < /dev/urandom | head -c 12)
 
     # sudo dhclient -r wlan0 
     # fuck the router. This script would be kinda fucking useless if we just 
     # said "yo bro, im not using this anymore" when we're trying to exhaust the lease pool
-    sudo dhclient -H "$HOSTNAME" wlan0
+    sudo dhclient -H "$HOSTNAME" wlan0 && \
+    cpl = $((cpl + 1))
+    echo "--> loop $(cpl): Successfully claimed a new IP lease <---"
 
     #sleep 60
     # sleep is for the weak (people and wlan cards alike)
