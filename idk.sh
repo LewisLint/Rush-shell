@@ -1,5 +1,5 @@
 #!/bin/zsh
-cpl=1
+cpl=0
 while true; do
     ((cpl++))
     sudo ip link set dev wlan0 down && \
