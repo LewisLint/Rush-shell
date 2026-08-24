@@ -7,7 +7,8 @@ while true; do
 
     HOSTNAME=$(LC_ALL=C tr -dc 'a-z0-9' < /dev/urandom | head -c 12)
 
-    sudo dhclient -r wlan0
+    #sudo dhclient -r wlan0 
+    # fuck the router
     sudo dhclient -H "$HOSTNAME" wlan0
 
     sleep 60
