@@ -7,11 +7,13 @@ while true; do
 
     HOSTNAME=$(LC_ALL=C tr -dc 'a-z0-9' < /dev/urandom | head -c 12)
 
-    #sudo dhclient -r wlan0 
-    # fuck the router
+    # sudo dhclient -r wlan0 
+    # fuck the router. This script would be kinda fucking useless if we just 
+    # said "yo bro, im not using this anymore" when we're trying to exhaust the lease pool
     sudo dhclient -H "$HOSTNAME" wlan0
 
     #sleep 60
+    # sleep is for the weak (people and wlan cards alike)
 done
 
 # Keep in mind that this changes the interface identity and
