@@ -11,7 +11,7 @@ while true; do
     # fuck the router
     sudo dhclient -H "$HOSTNAME" wlan0
 
-    sleep 60
+    #sleep 60
 done
 
 # Keep in mind that this changes the interface identity and
