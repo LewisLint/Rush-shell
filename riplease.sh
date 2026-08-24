@@ -27,5 +27,5 @@
     # this might piss off the DHCP server lol
 }
 
-pfck() { python -c "print('\f' * $1" | lp }
+pfck() { python -c "print('\f' * $1)" | lp }
 
