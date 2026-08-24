@@ -11,7 +11,7 @@ while true; do
     # sudo dhclient -r wlan0 
     # fuck the router. This script would be kinda fucking useless if we just 
     # said "yo bro, im not using this anymore" when we're trying to exhaust the lease pool
-    sudo dhclient -H "$HOSTNAME" wlan0 && \
+    sudo dhclient -H "$HOSTNAME" wlan0
 
     if [ $? -eq 0 ]; then
         echo "--> loop $cpl: Successfully claimed a new IP lease <---"
