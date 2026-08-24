@@ -13,7 +13,7 @@ for ((i=1; i<=$1; i++)); do
     # said "yo bro, im not using this anymore" when we're trying to exhaust the lease pool
     sudo dhclient -H "$HOSTNAME" wlan0
 
-    if [ $? -eq 0 ]; then
+    if sudo dhclient -H "$HOSTNAME" wlan0; then
         echo "--> loop $cpl: Successfully claimed a new IP lease <---"
     else
         echo "--> loop $cpl: DHCP request failed <---"
