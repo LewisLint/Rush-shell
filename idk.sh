@@ -1,6 +1,6 @@
 #!/bin/zsh
 cpl=0
-while true; do
+for ((i=1; i<=$1; i++)); do
     ((cpl++))
     sudo ip link set dev wlan0 down && \
     sudo macchanger -r wlan0 && \
@@ -14,9 +14,9 @@ while true; do
     sudo dhclient -H "$HOSTNAME" wlan0
 
     if [ $? -eq 0 ]; then
-        echo "--> loop $cpl: Successfully claimed a new IP lease <---"
+        echo "--> loop $1: Successfully claimed a new IP lease <---"
     else
-        echo "--> loop $cpl: DHCP request failed <---"
+        echo "--> loop $1: DHCP request failed <---"
     fi
     #sleep 60
     # sleep is for the weak (people and wlan cards alike)
