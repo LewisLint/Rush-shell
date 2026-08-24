@@ -1,7 +1,7 @@
 #!/bin/zsh
-    riplease() {
-    cpl=0
-    for ((i=1; i<=$1; i++)); do
+
+cpl=0
+for ((i=1; i<=$1; i++)); do
         ((cpl++))
         sudo ip link set dev wlan0 down && \
         sudo macchanger -r wlan0 && \
@@ -20,12 +20,9 @@
         fi
         #sleep 60
         # sleep is for the weak (people and wlan cards alike)
-    done
+done
     
     # Keep in mind that this changes the interface identity and
     # repeatedly requests DHCP leases.
     # this might piss off the DHCP server lol
-}
-
-pfck() { python -c "print('\f' * $1)" | lp }
-
+    
