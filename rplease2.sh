@@ -44,7 +44,7 @@ for ((shit=1; shit<=$c; shit++)); do
     sleep "$d"
 done
 
-echo "Fleet simulation complete!"
+cleanup
 cleanup() {
     echo -e "\n\n[!] Resetting interface to factory default. "
     sudo ip link set wlan0 down
